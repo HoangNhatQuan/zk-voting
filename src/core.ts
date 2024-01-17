@@ -7,14 +7,14 @@ import { Proposal } from './types'
 import { Node } from './node'
 import { CONTRACT_ADDRESS, PUB_KEY } from './constant'
 import { BSGS } from './utils'
-import abi from '../abi/Atbash.json'
+import abi from '../abi/ZkVoting.json'
 
 const privateKey =
   BigInt(
     49360424492151327609744179530990798614627223631512818354400676568443765553532,
   )
 
-export class Atbash {
+export class ZkVoting {
   public readonly contract: Contract
   private _pubkey = secp256k1.Point.fromHex(PUB_KEY)
   constructor({

@@ -1,13 +1,13 @@
 import { ethers } from 'hardhat'
 
 async function main() {
-  const lePay = await ethers.deployContract('Atbash', [], {
+  const lePay = await ethers.deployContract('ZKVoting', [], {
     gasLimit: 30000000,
   })
 
   await lePay.waitForDeployment()
 
-  console.log('Atbash Address:', lePay.target)
+  console.log('ZkVoting Address:', lePay.target)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

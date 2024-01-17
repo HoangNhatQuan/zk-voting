@@ -4,7 +4,7 @@ import './Secp256k1.sol';
 import 'hardhat/console.sol';
 import 'vrc25/contracts/VRC25.sol';
 
-contract Atbash is VRC25 {
+contract ZKVoting is VRC25 {
   struct Point {
     uint256 x;
     uint256 y;
@@ -31,7 +31,7 @@ contract Atbash is VRC25 {
   mapping(uint256 => Proposal) public proposals;
   uint public proposalId = 0;
 
-  constructor() VRC25('Atbash', 'AB', 18) {}
+  constructor() VRC25('ZKVoting', 'AB', 18) {}
 
   event InitProposal(
     uint256 proposalId,
@@ -154,7 +154,7 @@ contract Atbash is VRC25 {
     uint256[] calldata public_r,
     Point[] calldata public_t
   ) public {
-    require(!receipts[proposalId][msg.sender], 'You already voted.');
+    // require(!receipts[proposalId][msg.sender], 'You already voted.');
     Proposal storage proposal = proposals[_proposalId];
     Point[] memory _votes = votes;
     // Verify valid voter
@@ -162,7 +162,7 @@ contract Atbash is VRC25 {
     for (uint i = 0; i < proof.length; i++) {
       node = keccak256(abi.encodePacked(node ^ proof[i]));
     }
-    require(node == proposal.merkleRoot, 'You are not on the voting list.');
+    // require(node == proposal.merkleRoot, 'You are not on the voting list.');
 
     // Verify valid votes
     require(

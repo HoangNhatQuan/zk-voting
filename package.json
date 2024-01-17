@@ -34,7 +34,7 @@
     "chai": "^4.2.0",
     "dotenv": "^16.3.1",
     "gh-pages": "^6.0.0",
-    "hardhat": "^2.17.3",
+    "hardhat": "^2.19.4",
     "hardhat-abi-exporter": "^2.10.1",
     "hardhat-gas-reporter": "^1.0.8",
     "nodemon": "^3.0.1",
@@ -48,7 +48,6 @@
   "dependencies": {
     "@noble/secp256k1": "^1.7.1",
     "@openzeppelin/contracts": "^5.0.0",
-    "atbash-evm": "^1.0.7",
     "ethers": "^6.8.0",
     "viem": "^1.20.3",
     "vrc25": "^1.0.2"

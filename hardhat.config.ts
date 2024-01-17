@@ -11,7 +11,7 @@ const config: HardhatUserConfig = {
     runOnCompile: true,
     clear: true,
     flat: true,
-    only: [':Atbash$'],
+    only: [':ZkVoting$'],
   },
   networks: {
     victionTestnet: {
