@@ -141,46 +141,6 @@ describe('Contract', function () {
     console.log('BallotBoxes before vote A: ', proposal.ballotBoxes)
   })
 
-  it('Vote for B', async function () {
-    const votFor = candidates[1]
-    const [signer] = await ethers.getSigners()
-    const proof_r: bigint[] = []
-    const proof_t: secp256k1.Point[] = []
-
-    const randomsNumber: bigint[] = []
-    const proof = merkleDistributor.prove(new Leaf(signer.address))
-    const votes = candidates.map((candidate) => {
-      const x = randomNumber()
-      randomsNumber.push(x)
-
-      const v = randomNumber()
-      const T = pubkey.multiply(v)
-      // r = v + cx
-      const r = v + commitment * x
-      proof_r.push(r)
-      proof_t.push(T)
-
-      const M = candidate === votFor ? P : zero
-      const C = M.add(pubkey.multiply(x)) // C = M + rG
-      return { x: C.x, y: C.y }
-    })
-
-    await contractZkVoting.vote(
-      0,
-      randomsNumber,
-      votes,
-      proof.map((e) => e.value),
-      proof_r,
-      proof_t,
-      {
-        gasLimit: 30000000,
-      },
-    )
-    const proposal = await contractZkVoting.getProposal(Number(0))
-
-    console.log('BallotBoxes before vote B: ', proposal.ballotBoxes)
-  })
-
   // it('Vote for A with wrong address', async function () {
   //   const votFor = candidates[2]
   //   const proof_r: bigint[] = []
